@@ -1,11 +1,11 @@
 package pfa.utilisateurservice;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import pfa.utilisateurservice.model.Etudiant;
 import pfa.utilisateurservice.model.Utilisateur;
 import pfa.utilisateurservice.service.UtilisateurService;
 
@@ -17,11 +17,12 @@ public class UtilisateurServiceApplication  {
    @Bean
    CommandLineRunner init(UtilisateurService utilisateurService) {
        return args -> {
-           Utilisateur utilisateur = new Utilisateur();
-           utilisateur.setNom("Safaaaa");
-           utilisateur.setPrenom("Oaa");
-           utilisateur.setEmail("saaa@gmail.com");
-           utilisateurService.save(utilisateur);
+//           Etudiant etudiant = new Etudiant();
+//           etudiant.setNom("Jon djDe");
+//           etudiant.setPrenom("Dkde");
+//           etudiant.setEmail("jodkfn@de.es");
+//           utilisateurService.save(etudiant);
+
 
        };
 //       // Afficher tous les utilisateurs pour vérifier l'insertion

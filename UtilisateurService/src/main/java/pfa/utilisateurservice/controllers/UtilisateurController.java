@@ -1,14 +1,13 @@
 package pfa.utilisateurservice.controllers;
 
+import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pfa.utilisateurservice.model.Etudiant;
+import pfa.utilisateurservice.model.Professeur;
 import pfa.utilisateurservice.model.Utilisateur;
+import pfa.utilisateurservice.service.EtudiantService;
+import pfa.utilisateurservice.service.ProfesseurService;
 import pfa.utilisateurservice.service.UtilisateurService;
 
 import java.util.List;
@@ -17,22 +16,55 @@ import java.util.List;
 
 public class UtilisateurController {
     @Autowired
-    private UtilisateurService utilisateurService;
+    private EtudiantService etudiantService;
 
-//    @GetMapping("/{email}")
-//    public ResponseEntity<Utilisateur> obtenirUtilisateurParEmail(@PathVariable String email) {
-//        return utilisateurService.trouverParEmail(email)
-//                .map(utilisateur -> new ResponseEntity<>(utilisateur, HttpStatus.OK))
-//                .orElseThrow(() -> new ResourceNotFoundException("Utilisateur introuvable avec l'email : " + email));
+    @Autowired
+    private ProfesseurService professeurService;
+
+    //CRUD pour les etudiants
+    @GetMapping("/etudiants")
+    public List<Utilisateur> getEtudiants() {
+        return etudiantService.findAll();
+    }
+    @PostMapping("/etudiants")
+    public Etudiant createEtudiant(@RequestBody Etudiant etudiant) {
+        return etudiantService.save(etudiant);
+    }
+
+//    @GetMapping("/etudiants/{id}")
+//    public Etudiant getEtudiantById(@PathVariable Long id) {
+//        return etudiantService.findById(id).orElse(null);
+//
 //    }
-    @GetMapping("/users")
-    public List findAll() {
-        return utilisateurService.findAll();
+
+    @DeleteMapping("/etudiants/{id}")
+    public void deleteEtudiant(@PathVariable Long id) {
+        etudiantService.delete(id);
     }
-    @GetMapping("/user/{id}")
-    public Utilisateur findById(@PathVariable int id) throws Exception{
-        return this.utilisateurService.findById(id).orElseThrow(()-> new
-                Exception("Utilisateur not found"));
+
+    // CRUD pour les professeurs
+    @GetMapping("/professeurs")
+    public List<Utilisateur> getAllProfesseurs() {
+        return professeurService.findAll();
     }
+
+    @PostMapping("/professeurs")
+    public Professeur createProfesseur(@RequestBody Professeur professeur) {
+        return professeurService.save(professeur);
+    }
+
+//    @GetMapping("/professeurs/{id}")
+//    public Professeur getProfesseurById(@PathVariable Long id) {
+//        return professeurService.findById(id).orElse(null);
+//    }
+
+    @DeleteMapping("/professeurs/{id}")
+    public void deleteProfesseur(@PathVariable Long id) {
+        professeurService.delete(id);
+    }
+
+
+
+
 
 }
