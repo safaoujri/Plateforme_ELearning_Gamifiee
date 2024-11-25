@@ -10,11 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Utilisateur {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING, length = 255)
+public abstract class Utilisateur  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    public Integer Id_Compte;
+    public Long Id_Compte;
     public String nom_Compte;
     private String nom;
     private String prenom;
