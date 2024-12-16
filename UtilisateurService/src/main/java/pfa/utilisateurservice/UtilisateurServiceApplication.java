@@ -5,9 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
-import pfa.utilisateurservice.model.Etudiant;
-import pfa.utilisateurservice.model.Utilisateur;
-import pfa.utilisateurservice.service.UtilisateurService;
+import pfa.utilisateurservice.service.Impl.UtilisateurService;
 
 @SpringBootApplication
 @EnableDiscoveryClient
